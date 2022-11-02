@@ -5,7 +5,9 @@ import java.awt.event.*;
 
 class MyJFrame extends JFrame implements ActionListener{
     private JPanel contentPane;
+    private JPanel upPane;
     private JTextField contentResult;
+
     private JLabel  space1;
     private JLabel  space2;
     private JLabel  space3;
@@ -23,26 +25,32 @@ class MyJFrame extends JFrame implements ActionListener{
         
        
         operator=num1=num2="";
+
+        upPane=new JPanel();
+        upPane.setLayout(new BorderLayout(10,10));
+        setContentPane(upPane);
        
         contentPane=new JPanel();
-        contentPane.setLayout(new GridLayout(5,4,10,20));//GridLayout方法 用空格排序
-        setContentPane(contentPane);
+        contentPane.setLayout(new GridLayout(5,4,40,20));//GridLayout方法 用空格排序
 
         contentResult = new JTextField(20);
-        contentResult.setColumns(10);
-        contentResult.setText("0"); 
-        contentPane.add(contentResult);
+        upPane.add(contentResult, BorderLayout.NORTH);
+  
 
+       
+
+        //計算機按鍵
+        JButton c=new JButton("c");
+        contentPane.add(c);
 
         space1 = new JLabel(" ");
-        contentPane.add( space1);
+        contentPane.add(space1);
 
         space2 = new JLabel(" ");
-        contentPane.add( space2);
+        contentPane.add(space2);
 
-        JButton c=new JButton("c");
-        // c.addActionListener(this);
-        contentPane.add(c);
+        space3 = new JLabel(" ");
+        contentPane.add(space3);
 
         JButton btn7=new JButton("7");
         btn7.addActionListener(this);
@@ -59,7 +67,6 @@ class MyJFrame extends JFrame implements ActionListener{
         JButton btndiv=new JButton("/");
         btndiv.addActionListener(this);
         contentPane.add(btndiv);
-
 
         JButton btn4=new JButton("4");
         btn4.addActionListener(this);
@@ -88,8 +95,7 @@ class MyJFrame extends JFrame implements ActionListener{
         JButton btn3=new JButton("3");
         btn3.addActionListener(this);
         contentPane.add(btn3);
-
-       
+   
         JButton btnsub=new JButton("-");
         btnsub.addActionListener(this);
         contentPane.add(btnsub);
@@ -97,14 +103,9 @@ class MyJFrame extends JFrame implements ActionListener{
         space3 = new JLabel(" ");
         contentPane.add( space3);
        
-        
-
         JButton btn0=new JButton("0");
         btn0.addActionListener(this);
         contentPane.add(btn0);
-
-
-       
 
         JButton btneql=new JButton("=");
         btneql.addActionListener(this);
@@ -114,8 +115,8 @@ class MyJFrame extends JFrame implements ActionListener{
         btnadd.addActionListener(this);
         contentPane.add(btnadd);
 
-    
-        
+        upPane.add(contentPane, BorderLayout.CENTER);
+        //c按鍵的功能
         c.addActionListener(e->{
             operator=num1=num2="";   //將集合中的資料清零
 			contentResult.setText("0");//預設為0
@@ -128,9 +129,9 @@ class MyJFrame extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
         String symbol = e.getActionCommand();
-       
+
         //讀取輸入的值
-        if ((symbol.charAt(0) >= '0' && symbol.charAt(0) <= '9')){
+        if ((symbol.charAt(0) >= '0' && symbol.charAt(0)<= '9')){//Ascii值
             //如果輸入為數字時
             if (!operator.equals("")){//如果沒有輸入運算符號
                 num2 = num2+symbol;
@@ -156,12 +157,8 @@ class MyJFrame extends JFrame implements ActionListener{
 
             contentResult.setText(num1+operator+num2+"="+result);
 
-           operator = num2 = "";
+            operator = num2 = "";
             num1 = Integer.toString(result);
-
-           
-       
-       
            
         }else{
             
@@ -169,8 +166,7 @@ class MyJFrame extends JFrame implements ActionListener{
                 operator = symbol;
 
             }else if(num2.equals("")){
-                    contentResult.setText(operator);
-    
+                    contentResult.setText(operator);   
                 
             }else{
                 int result = 0;
