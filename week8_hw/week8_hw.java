@@ -8,8 +8,7 @@ import java.util.List;
 
 class MyJFrame extends JFrame{ 
   
-    private JScrollPane jsp=new  JScrollPane();
-   
+    private JScrollPane jsp=new  JScrollPane();   
     private JPanel jp1=new  JPanel();
     private JTextArea jta=new  JTextArea();
 
@@ -64,7 +63,7 @@ class MyJFrame extends JFrame{
        add(jsp);
 
 
-        jta=new JTextArea();//多行文字欄位
+       jta=new JTextArea();//多行文字欄位
        add(jta);
        jta.setBounds(20,150,170,100);
 
