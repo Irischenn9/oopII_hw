@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.AncestorListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
@@ -9,7 +8,6 @@ import java.util.List;
 class MyJFrame extends JFrame{ 
   
     private JScrollPane jsp=new  JScrollPane();   
-    private JPanel jp1=new  JPanel();
     private JTextArea jta=new  JTextArea();
 
 
