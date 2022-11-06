@@ -101,7 +101,7 @@ class MyJFrame extends JFrame implements ActionListener{
         contentPane.add(btnsub);
         
         space3 = new JLabel(" ");
-        contentPane.add( space3);
+        contentPane.add(space3);
        
         JButton btn0=new JButton("0");
         btn0.addActionListener(this);
@@ -131,34 +131,43 @@ class MyJFrame extends JFrame implements ActionListener{
         String symbol = e.getActionCommand();
 
         //讀取輸入的值
-        if ((symbol.charAt(0) >= '0' && symbol.charAt(0)<= '9')){//Ascii值
+         if(symbol.charAt(0)>= '0'&& symbol.charAt(0)<= '9'){//Ascii值
             //如果輸入為數字時
-            if (!operator.equals("")){//如果沒有輸入運算符號
+   
+            if (!operator.equals("")){//如果有輸入運算符號
                 num2 = num2+symbol;
-            }else{
+            }else{//如果沒有輸入運算符號
                 num1 = num1+symbol;
             }
             contentResult.setText(num1+operator+num2);
+           
             
         }else if (symbol.equals("=")){ //如果輸入為=時
             int result = 0;
+            switch(operator){
 
-            if (operator.equals("+")){
+            case "+":
                 result = Integer.valueOf(num1)+Integer.valueOf(num2);
-            }else if(operator.equals("-")){
-                result = Integer.valueOf(num1)-Integer.valueOf(num2);
-            }else if (operator.equals("x")){
-                result = Integer.valueOf(num1)*Integer.valueOf(num2);
-            }else if (operator.equals("/")){
-                result = Integer.valueOf(num1)/Integer.valueOf(num2);
-            }else{
-                contentResult.setText("ERROR!");
-            }
+                break;
 
+            case"-":
+                result = Integer.valueOf(num1)-Integer.valueOf(num2);
+                break;
+
+            case"x":
+                result = Integer.valueOf(num1)*Integer.valueOf(num2);
+                break;
+
+            case"/":
+                result = Integer.valueOf(num1)/Integer.valueOf(num2);
+                break;
+        
+            }
             contentResult.setText(num1+operator+num2+"="+result);
 
             operator = num2 = "";
             num1 = Integer.toString(result);
+
            
         }else{
             
@@ -166,22 +175,31 @@ class MyJFrame extends JFrame implements ActionListener{
                 operator = symbol;
 
             }else if(num2.equals("")){
-                    contentResult.setText(operator);   
+                contentResult.setText(operator);   
                 
-            }else{
+            }
+            else{
                 int result = 0;
 
-                if (operator.equals("+")){
-                    result = Integer.valueOf(num1)+Integer.valueOf(num2);
-                }else if(operator.equals("-")){
-                    result = Integer.valueOf(num1)-Integer.valueOf(num2);
-                }else if (operator.equals("x")){
-                    result = Integer.valueOf(num1)*Integer.valueOf(num2);
-                }else if (operator.equals("/")){
-                    result = Integer.valueOf(num1)/Integer.valueOf(num2);
-                }else{
-                    contentResult.setText("ERROR!");
-                }
+                switch(operator){
+
+                    case "+":
+                        result = Integer.valueOf(num1)+Integer.valueOf(num2);
+                        break;
+
+                    case"-":
+                        result = Integer.valueOf(num1)-Integer.valueOf(num2);
+                        break;
+
+                    case"x":
+                        result = Integer.valueOf(num1)*Integer.valueOf(num2);
+                        break;
+
+                    case"/":
+                        result = Integer.valueOf(num1)/Integer.valueOf(num2);
+                        break;
+                
+                    }
 
                 num1 = Integer.toString(result);
                 operator = symbol;
@@ -194,8 +212,6 @@ class MyJFrame extends JFrame implements ActionListener{
 
     }
 }
-
-
 
 public class week5_hw_calculator{
     public static void main(String[] args) throws Exception{
